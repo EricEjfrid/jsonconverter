@@ -27,7 +27,7 @@ def transform_json(input_data):
                 timestamp = (start_time + timedelta(milliseconds=ms_from_start)).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
                 transformed_data.append({
                     "timestamp": timestamp,
-                    "type": "M",
+                    "type": "- M - motion",
                     "data": {
                         "acc": entry["acc"],
                         "accG": entry["accG"],
@@ -41,7 +41,7 @@ def transform_json(input_data):
                 timestamp = (start_time + timedelta(milliseconds=ms_from_start)).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
                 transformed_data.append({
                     "timestamp": timestamp,
-                    "type": "O",
+                    "type": "- O - orientation",
                     "data": {
                         "alpha": entry["alpha"],
                         "beta": entry["beta"],
@@ -55,7 +55,7 @@ def transform_json(input_data):
                 timestamp = (start_time + timedelta(milliseconds=ms_from_start)).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
                 transformed_data.append({
                     "timestamp": timestamp,
-                    "type": "D",
+                    "type": "- D - distance",
                     "data": {
                         "distance": entry.get("cumulativeWheelRevolutions", "")
                     }
@@ -71,4 +71,4 @@ transformed_data.sort(key=lambda x: x["timestamp"])
 
 with open("transformed.txt", "w") as file:
     for entry in transformed_data:
-        file.write(f"Timestamp: {entry['timestamp']}, Type: {entry['type']}, Data: {entry['data']}\n")
+        file.write(f"{entry['timestamp']} {entry['type']} {entry['data']}\n")
