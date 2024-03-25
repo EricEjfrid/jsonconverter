@@ -43,10 +43,10 @@ def transform_json(input_data):
                     "timestamp": timestamp,
                     "type": "- O - orientation",
                     "data": {
+                        "abs": entry.get("abs", False),
                         "alpha": entry["alpha"],
                         "beta": entry["beta"],
-                        "gamma": entry["gamma"],
-                        "abs": entry.get("abs", False)
+                        "gamma": entry["gamma"]
                     }
                 })
         elif key == "distance":
