@@ -69,6 +69,6 @@ transformed_data = transform_json(data)
 
 transformed_data.sort(key=lambda x: x["timestamp"])
 
-with open("transformed.txt", "w") as file:
+with open(argv[1] + "-transformed.txt", "w") as file:
     for entry in transformed_data:
         file.write(f"{entry['timestamp']} {entry['type']} {entry['data']}\n")
